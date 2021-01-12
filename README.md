@@ -31,30 +31,8 @@ and run `docker compose up`.
 This manual method of running ffmpeg-queue is not recommended and does not include all components required to run the website. It
 is highly recommended that you run ffmpeg-queue using Docker.
 
-#### Backend
-
-The backend is designed to pool multiple different connections (Firebase, database, etc.) into one easy-to-use,
-straightforward API that can be used by both the frontend and any third-party applications that wish to use ffmpeg-queue's
-public data.
-
-To prepare the backend, enter the directory and install dependencies thru `yarn install`.
-To run the backend, enter the directory and run `yarn start`.
-
-#### Frontend
-
-The frontend is where all the magic happens - this is where the user interacts with ffmpeg-queue, and is used as a base for both
-the desktop web app and the mobile PWA.
-
-To prepare the frontend, enter the directory and install dependencies thru `yarn install`.
-To run the backend, enter the directory and run `yarn start`.
-
-#### Proxy
-
-The reverse proxy allows for only one port to be exposed publicly, with requests on the `/api` endpoint being redirected to
-the Express-based backend / API and all other requests being redirected to the Nuxt-based frontend.
-
-To prepare the proxy, enter the directory and install dependencies thru `yarn install`.
-To run the proxy, enter the directory and run `yarn start`.
+To prepare the project, enter the directory and install dependencies thru `yarn install`.
+To run the project, enter the directory and run `yarn start`.
 
 ## Deploying
 
@@ -73,27 +51,6 @@ compromised accounts, etc.**
 TODO
 
 ### Manually
-
-#### Backend
-
-TODO
-
-#### Frontend
-
-To deploy the frontend:
-
-```bash
-# Install dependencies
-yarn install
-
-# Build for production
-yarn build
-
-# Launch server
-yarn start
-```
-
-#### Proxy
 
 TODO
 
