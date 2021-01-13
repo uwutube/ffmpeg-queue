@@ -5,8 +5,8 @@
  * Singleton
  */
 
-var { promisify } = require("util");
-var redis = require("redis");
+const { promisify } = require("util");
+const redis = require("redis");
 const config = require("../config.json");
 
 class Redis {
