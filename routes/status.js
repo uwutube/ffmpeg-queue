@@ -9,6 +9,13 @@ async function routes(fastify, options) {
     let pair = await redis_stack.GetId(request.params.id);
     return pair;
   });
+
+  /*
+   * Return possible options
+   */
+  fastify.options("/status*", async (request, response) => {
+    return response.status(200).header("Allow", "GET").send();
+  });
 }
 
 module.exports = routes;
