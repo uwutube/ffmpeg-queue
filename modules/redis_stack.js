@@ -12,7 +12,7 @@ const { v4: uuidv4 } = require("uuid");
 
 class Redis {
   constructor() {
-    this.app = redis.createClient(config.redis_url);
+    this.app = redis.createClient(config.redis.url);
     this.app.on("error", function(err) {
       console.error(err);
     });
@@ -29,7 +29,7 @@ class Redis {
   }
 
   async GetQueueSize() {
-    var range = await this._lrange(config.queue_name, 0, -1);
+    var range = await this._lrange(config.redis.queue_name, 0, -1);
     return range.length;
   }
 
@@ -37,7 +37,7 @@ class Redis {
     // Generate an ID
     let id = uuidv4();
     // Push the ID to the queue
-    let queuePos = await this._rpush(config.queue_name, id);
+    let queuePos = await this._rpush(config.redis.queue_name, id);
     // Create a new key with the ID, give it the value of 'value'.
     await this._setAsync(id, value);
 
@@ -49,7 +49,7 @@ class Redis {
     // We want to pop the ID (step 1) and then return the value of the pair with that key (step 2)
 
     // Pop id
-    var id = await this._lpop(config.queue_name);
+    var id = await this._lpop(config.redis.queue_name);
 
     // Get pair
     var value = await this._getAsync(id);

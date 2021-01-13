@@ -7,14 +7,14 @@ async function routes(fastify, options) {
    */
   fastify.post("/enqueue", async (request, response) => {
     // Check if we've exceeded the max. number of jobs
-    if (redis_stack.GetQueueSize() > config.max_queue_jobs) {
+    if (redis_stack.GetQueueSize() > config.upload.max_queue_jobs) {
       return response.status(503).send({ "status": "failure", "message": "Queue full, try again later." });
     }
 
     const data = await request.file();
 
     // Check whether the uploaded file is actually supported by ffmpeg - if not, notify the client
-    if (!config.supported_types.includes(data.mimetype)) {
+    if (!config.upload.supported_types.includes(data.mimetype)) {
       return response.status(400).send({ "status": "failure", "message": "Unsupported MIME type." });
     }
 

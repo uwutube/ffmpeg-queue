@@ -4,8 +4,8 @@ const fastify = require("fastify")({
 });
 
 fastify.register(require("fastify-multipart"), { 
-  fileSize: config.max_file_size,
-  files: config.max_files
+  fileSize: config.upload.max_file_size,
+  files: config.upload.max_files
 });
 
 fastify.register(require("./routes/enqueue"));
