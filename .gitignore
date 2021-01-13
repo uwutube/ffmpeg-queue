@@ -130,3 +130,6 @@ dist
 # .pnp.*
 
 # End of https://www.toptal.com/developers/gitignore/api/yarn,node
+
+# Config files
+config.json

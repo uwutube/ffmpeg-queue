@@ -1,0 +1,7 @@
+{
+  "max_queue_jobs": 1024,
+  "redis_url": "redis://redis",
+  "max_file_size": 10000,
+  "max_files": 1,
+  "queue_name": "ffmpeg-queue"
+}
