@@ -1,9 +1,7 @@
 const redis_stack = require("../modules/redis_stack");
 const config = require("../config.json");
-const supported_types = require("../supported_types");
 
 async function routes(fastify, options) {
-  
   /*
    * Push a queue job to the stack
    */
@@ -16,7 +14,7 @@ async function routes(fastify, options) {
     const data = await request.file();
 
     // Check whether the uploaded file is actually supported by ffmpeg - if not, notify the client
-    if (!supported_types.includes(data.mimetype)) {
+    if (!config.supported_types.includes(data.mimetype)) {
       return response.status(400).send({ "status": "failure", "message": "Unsupported MIME type." });
     }
 
