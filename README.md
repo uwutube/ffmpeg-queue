@@ -16,6 +16,10 @@
   </p>
 </div>
 
+## Dependencies
+
+- `redis` - >= 6.0
+
 ## Running Locally
 
 These instructions allow you to run ffmpeg-queue locally for development; please don't use these for production - instead, see the

@@ -4,6 +4,7 @@ const fastify = require('fastify')({
 
 fastify.register(require("fastify-multipart"));
 fastify.register(require("./routes/enqueue"));
+fastify.register(require("./routes/status"));
 
 fastify.listen(3000, "0.0.0.0", function (err, address) {
   if (err) {

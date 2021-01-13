@@ -23,7 +23,7 @@ async function routes(fastify, options) {
     };
 
     let queuePos = await redis_stack.Push(JSON.stringify(fileMeta));
-    return { "status": "success", "meta": fileMeta, "queuePos": queuePos };
+    return { "status": "success", "file": fileMeta, "stack": queuePos };
   });
 
   /*
@@ -31,6 +31,7 @@ async function routes(fastify, options) {
    */
   fastify.get("/test-pop", async(request, response) => {
     let popped = await redis_stack.Pop();
+    await redis_stack.DeleteId(popped.id);
     return popped;
   });
 
