@@ -1,8 +1,13 @@
+const config = require("./config.json");
 const fastify = require("fastify")({
   logger: true
 });
 
-fastify.register(require("fastify-multipart"));
+fastify.register(require("fastify-multipart"), { 
+  fileSize: config.max_file_size,
+  files: config.max_files
+});
+
 fastify.register(require("./routes/enqueue"));
 fastify.register(require("./routes/status"));
 

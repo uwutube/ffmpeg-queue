@@ -12,7 +12,7 @@ const { v4: uuidv4 } = require("uuid");
 
 class Redis {
   constructor() {
-    this.app = redis.createClient("redis://redis");
+    this.app = redis.createClient(config.redis_url);
     this.app.on("error", function(err) {
       console.error(err);
     });
