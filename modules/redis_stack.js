@@ -51,6 +51,9 @@ class Redis {
     // Pop id
     var id = await this._lpop(config.redis.queue_name);
 
+    if (!id) // ID is null, therefore we can't get anything.
+      return null;
+
     // Get pair
     var value = await this._getAsync(id);
 
