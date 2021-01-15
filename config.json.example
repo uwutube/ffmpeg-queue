@@ -1,7 +1,8 @@
 {
   "redis": {
     "url": "redis://redis",
-    "queue_name": "ffmpeg-queue"
+    "queue_name": "ffmpeg-queue",
+    "log": true
   },
 
   "upload": {
@@ -26,5 +27,30 @@
       "video/x-ms-asf",
       "video/x-msvideo"
     ]  
+  },
+  
+  "ffmpeg": {
+    "process_interval": 1000,
+    "log": false,
+    "configs": [
+      {
+        "name": "720p",
+        "size": "1280x720",
+        "framerate": 60,
+        "videoCodec": "mpeg4",
+        "audioCodec": "aac",
+        "audioChannels": 2,
+        "bitrate": "2M"
+      },
+      {
+        "name": "1080p",
+        "size": "1920x1080",
+        "framerate": 60,
+        "videoCodec": "mpeg4",
+        "audioCodec": "aac",
+        "audioChannels": 2,
+        "bitrate": "5M"
+      }
+    ]
   }
 }
