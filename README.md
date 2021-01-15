@@ -20,6 +20,91 @@
 
 - `redis` - >= 6.0
 
+## Endpoints
+
+### `POST /enqueue`
+
+Push a queue job to the stack.
+
+#### Parameters
+
+|Name  |Type  |Description|
+|------|------|-----------|
+|`file`  |File  |A video file to transcode (with a MIME type specified in `config.upload.supported_types`).|
+
+#### Response
+
+**JSON**
+|Name  |Type  |Description|
+|------|------|-----------|
+|`status` |Type  |`success` or `failure`|
+|`message` |Type  |If the status is `failure`, a message containing the reason as to why the request failed.|
+|`file`  |Object |An object containing the file's given filename (`/tmp/ID`) as well as the time it was received.|
+|`stack`  |Object |An object containing the position of this job on the stack (0 to config.upload.max_queue_jobs) as well as the file's given ID (generated through UUID v4).|
+
+### `GET /enqueue`
+
+Get the number of jobs in the queue.
+
+#### Parameters
+
+**None**
+
+#### Response
+
+**JSON**
+|Name  |Type  |Description|
+|------|------|-----------|
+|`queueSize`  |Integer|The current number of objects on the queue.|
+
+### `OPTIONS /enqueue`
+
+Return a list of possible options.
+
+#### Parameters
+
+**None**
+
+#### Response
+
+**Headers**
+|Name  |Type  |Description|
+|------|------|-----------|
+|`Allow` |String|A list of possible methods for use with this endpoint.|
+
+### `GET /status/:id`
+
+#### Parameters
+
+|Name  |Type  |Description|
+|------|------|-----------|
+|`id`|UUID|The ID of the job whose status is being requested.|
+
+#### Response
+
+**JSON**
+|Name  |Type  |Description|
+|------|------|-----------|
+|`id`  |Type  |Description|
+|`value`|Object|An object containing the file's `fileName` and the `time` it was uploaded.|
+|`inProgress`|Boolean|`true` if the transcode is in-progress, `false` if the transcode has completed.|
+|`progress`|Decimal|A value from 0 to 1 stating the current transcode progress.|
+
+### `OPTIONS /status`
+
+Return a list of possible options.
+
+#### Parameters
+
+**None**
+
+#### Response
+
+**Headers**
+|Name  |Type  |Description|
+|------|------|-----------|
+|Allow |String|A list of possible methods for use with this endpoint.|
+
 ## Running Locally
 
 These instructions allow you to run ffmpeg-queue locally for development; please don't use these for production - instead, see the

@@ -33,14 +33,22 @@ class Redis {
     return range.length;
   }
 
-  async Push(value) {
-    // Generate an ID
-    let id = uuidv4();
+  async Push(value, id) {
+    if (!id) {
+      // No ID provided - we're probably making a new entry.
+      // Generate an ID
+      id = uuidv4();
+    }
+
+    if (config.redis.log)
+      console.log(`Pushing ${id} to queue.`);
+
     // Push the ID to the queue
     let queuePos = await this._rpush(config.redis.queue_name, id);
     // Create a new key with the ID, give it the value of 'value'.
     await this._setAsync(id, value);
 
+    // Return the ID just in case it was newly generated or something, and the queue pos so we can track this entry later
     return { id, queuePos };
   }
 
@@ -50,6 +58,9 @@ class Redis {
 
     // Pop id
     var id = await this._lpop(config.redis.queue_name);
+
+    if (config.redis.log)
+      console.log(`Popped ${id}.`);
 
     if (!id) // ID is null, therefore we can't get anything.
       return null;
@@ -62,8 +73,24 @@ class Redis {
 
   async GetId(id) {
     // We have an ID, and we want the current status of its value
+    if (config.redis.log)
+      console.log(`Getting entry ${id}.`);
+    
     let kvp = await this._getAsync(id);
     return kvp;
+  }
+
+  async SetId(value, id) {
+    // We have an ID, and we want to set its value
+
+    if (config.redis.log)
+      console.log(`Adding entry ${id}.`);
+
+    // Create a new key with the ID, give it the value of 'value'.
+    await this._setAsync(id, value);
+
+    // Return the ID just in case it was newly generated or something
+    return { id };
   }
 
   async DeleteId(id) {

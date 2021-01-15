@@ -48,15 +48,6 @@ async function routes(fastify, options) {
   });
 
   /*
-   * Test pop route - pop last item on stack
-   */
-  fastify.get("/test-pop", async(request, response) => {
-    let popped = await redis_stack.Pop();
-    await redis_stack.DeleteId(popped.id);
-    return popped;
-  });
-
-  /*
    * Get number of jobs on queue
    */
   fastify.get("/enqueue", async (request, response) => {
