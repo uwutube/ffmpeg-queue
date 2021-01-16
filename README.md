@@ -40,7 +40,7 @@ Push a queue job to the stack.
 |`status` |Type  |`success` or `failure`|
 |`message` |Type  |If the status is `failure`, a message containing the reason as to why the request failed.|
 |`file`  |Object |An object containing the file's given filename (`/tmp/ID`) as well as the time it was received.|
-|`stack`  |Object |An object containing the position of this job on the stack (0 to config.upload.max_queue_jobs) as well as the file's given ID (generated through UUID v4).|
+|`stack`  |Object |An object containing the position of this job on the stack (0 to `config.upload.max_queue_jobs`) as well as the file's given ID (generated through UUID v4).|
 
 ---
 
