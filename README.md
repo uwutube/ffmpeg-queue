@@ -42,6 +42,8 @@ Push a queue job to the stack.
 |`file`  |Object |An object containing the file's given filename (`/tmp/ID`) as well as the time it was received.|
 |`stack`  |Object |An object containing the position of this job on the stack (0 to config.upload.max_queue_jobs) as well as the file's given ID (generated through UUID v4).|
 
+---
+
 ### `GET /enqueue`
 
 Get the number of jobs in the queue.
@@ -57,6 +59,8 @@ Get the number of jobs in the queue.
 |------|------|-----------|
 |`queueSize`  |Integer|The current number of objects on the queue.|
 
+---
+
 ### `OPTIONS /enqueue`
 
 Return a list of possible options.
@@ -71,6 +75,8 @@ Return a list of possible options.
 |Name  |Type  |Description|
 |------|------|-----------|
 |`Allow` |String|A list of possible methods for use with this endpoint.|
+
+---
 
 ### `GET /status/:id`
 
@@ -89,6 +95,8 @@ Return a list of possible options.
 |`value`|Object|An object containing the file's `fileName` and the `time` it was uploaded.|
 |`inProgress`|Boolean|`true` if the transcode is in-progress, `false` if the transcode has completed.|
 |`progress`|Decimal|A value from 0 to 1 stating the current transcode progress.|
+
+---
 
 ### `OPTIONS /status`
 
