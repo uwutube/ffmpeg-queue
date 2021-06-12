@@ -6,5 +6,5 @@ metadata:
     github.com/project-slug: uwutube/ffmpeg-queue
 spec:
   type: other
-  lifecycle: unknown
+  lifecycle: experimental
   owner: uwutube
