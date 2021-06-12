@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ffmpeg-queue
+  annotations:
+    github.com/project-slug: uwutube/ffmpeg-queue
+spec:
+  type: other
+  lifecycle: unknown
+  owner: uwutube
